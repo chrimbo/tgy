@@ -1,4 +1,4 @@
-https://github.com/sim-/tgy
+https://github.com/chrimbo/tgy
 
 This tree contains Atmel AVR assembly code for ATmega-based 3-phase
 sensor-less motor electronic speed control (ESC) boards, originally for
@@ -103,6 +103,10 @@ Tested boards by target:
     - Hobby King SS models with "-HW" in part number
 - tgy6a:
     - Original Turnigy Plush 6A
+- cn:
+	- Super cheap yellow esc from ebay 
+    
+  
 
 Notes
 -----
