@@ -50,11 +50,11 @@
 ;
 ;-- Device ----------------------------------------------------------------
 ;
-.include "m88def.inc"
+.include "m48def.inc"
 ;
-; 8K Bytes of In-System Self-Programmable Flash
-; 512 Bytes EEPROM
-; 1K Byte Internal SRAM
+; 4K Bytes of In-System Self-Programmable Flash
+; 256 Bytes EEPROM
+; 512 Byte Internal SRAM
 ;
 ;-- Fuses -----------------------------------------------------------------
 ;

@@ -1,15 +1,15 @@
 ;***** THIS IS A MACHINE GENERATED FILE - DO NOT EDIT ********************
-;***** Created: 2005-01-11 10:31 ******* Source: ATmega88.xml ************
+;***** Created: 2005-01-11 10:31 ******* Source: ATmega48.xml ************
 ;*************************************************************************
 ;* A P P L I C A T I O N   N O T E   F O R   T H E   A V R   F A M I L Y
 ;* 
 ;* Number            : AVR000
-;* File Name         : "m88def.inc"
-;* Title             : Register/Bit Definitions for the ATmega88
+;* File Name         : "m48def.inc"
+;* Title             : Register/Bit Definitions for the ATmega48
 ;* Date              : 2005-01-11
 ;* Version           : 2.14
 ;* Support E-mail    : avr@atmel.com
-;* Target MCU        : ATmega88
+;* Target MCU        : ATmega48
 ;* 
 ;* DESCRIPTION
 ;* When including this file in the assembly program file, all I/O register 
@@ -37,18 +37,18 @@
 ;* ...                         ;otherwise do something else
 ;*************************************************************************
 
-#ifndef _M88DEF_INC_
-#define _M88DEF_INC_
+#ifndef _M48DEF_INC_
+#define _M48DEF_INC_
 
 
 #pragma partinc 0
 
 ; ***** SPECIFY DEVICE ***************************************************
-.device ATmega88
-#pragma AVRPART ADMIN PART_NAME ATmega88
+.device ATmega48
+#pragma AVRPART ADMIN PART_NAME ATmega48
 .equ	SIGNATURE_000	= 0x1e
-.equ	SIGNATURE_001	= 0x93
-.equ	SIGNATURE_002	= 0x0a
+.equ	SIGNATURE_001	= 0x92
+.equ	SIGNATURE_002	= 0x05
 
 #pragma AVRPART CORE CORE_VERSION V2E
 
@@ -70,6 +70,7 @@
 .equ	TWSR	= 0xb9	; MEMORY MAPPED
 .equ	TWBR	= 0xb8	; MEMORY MAPPED
 .equ	ASSR	= 0xb6	; MEMORY MAPPED
+.equ	PRR	= 0x64	; MEMORY MAPPED
 .equ	OCR2B	= 0xb4	; MEMORY MAPPED
 .equ	OCR2A	= 0xb3	; MEMORY MAPPED
 .equ	TCNT2	= 0xb2	; MEMORY MAPPED
@@ -102,7 +103,6 @@
 .equ	EICRA	= 0x69	; MEMORY MAPPED
 .equ	PCICR	= 0x68	; MEMORY MAPPED
 .equ	OSCCAL	= 0x66	; MEMORY MAPPED
-.equ	PRR	= 0x64	; MEMORY MAPPED
 .equ	CLKPR	= 0x61	; MEMORY MAPPED
 .equ	WDTCSR	= 0x60	; MEMORY MAPPED
 .equ	SREG	= 0x3f
@@ -738,7 +738,6 @@
 
 ; MCUCR - MCU Control Register
 .equ	IVCE	= 0	; 
-.equ	IVSEL	= 1	; 
 .equ	PUD	= 4	; 
 
 ; MCUSR - MCU Status Register
@@ -822,9 +821,6 @@
 .equ	EEAR6	= 6	; EEPROM Read/Write Access Bit 6
 .equ	EEAR7	= 7	; EEPROM Read/Write Access Bit 7
 
-; EEARH - EEPROM Address Register High Byte
-.equ	EEAR8	= 0	; EEPROM Read/Write Access Bit 0
-
 ; EEDR - EEPROM Data Register
 .equ	EEDR0	= 0	; EEPROM Data Register bit 0
 .equ	EEDR1	= 1	; EEPROM Data Register bit 1
@@ -838,7 +834,9 @@
 ; EECR - EEPROM Control Register
 .equ	EERE	= 0	; EEPROM Read Enable
 .equ	EEPE	= 1	; EEPROM Write Enable
+.equ	EEWE	= EEPE	; For compatibility
 .equ	EEMPE	= 2	; EEPROM Master Write Enable
+.equ	EEMWE	= EEMPE	; For compatibility
 .equ	EERIE	= 3	; EEPROM Ready Interrupt Enable
 .equ	EEPM0	= 4	; EEPROM Programming Mode Bit 0
 .equ	EEPM1	= 5	; EEPROM Programming Mode Bit 1
@@ -876,9 +874,7 @@
 .equ	RSTDISBL	= 7	; External reset disable
 
 ; EXTENDED fuse bits
-.equ	BOOTRST	= 0	; Select reset vector
-.equ	BOOTSZ0	= 1	; Select boot size
-.equ	BOOTSZ1	= 2	; Select boot size
+;.equ	SELFPRGEN	= 0	; Self Programming Enable
 
 
 
@@ -893,35 +889,34 @@
 
 
 ; ***** DATA MEMORY DECLARATIONS *****************************************
-.equ	FLASHEND	= 0x0fff	; Note: Word address
+.equ	FLASHEND	= 0x07ff	; Note: Word address
 .equ	IOEND	= 0x00ff
 .equ	SRAM_START	= 0x0100
-.equ	SRAM_SIZE	= 1024
-.equ	RAMEND	= 0x04ff
+.equ	SRAM_SIZE	= 512
+.equ	RAMEND	= 0x02ff
 .equ	XRAMEND	= 0x0000
-.equ	E2END	= 0x01ff
-.equ	EEPROMEND	= 0x01ff
-.equ	EEADRBITS	= 9
-#pragma AVRPART MEMORY PROG_FLASH 8192
-#pragma AVRPART MEMORY EEPROM 512
-#pragma AVRPART MEMORY INT_SRAM SIZE 1024
+.equ	E2END	= 0x00ff
+.equ	EEPROMEND	= 0x00ff
+.equ	EEADRBITS	= 8
+#pragma AVRPART MEMORY PROG_FLASH 4096
+#pragma AVRPART MEMORY EEPROM 256
+#pragma AVRPART MEMORY INT_SRAM SIZE 512
 #pragma AVRPART MEMORY INT_SRAM START_ADDR 0x100
 
 
 
 ; ***** BOOTLOADER DECLARATIONS ******************************************
-.equ	NRWW_START_ADDR	= 0xc00
-.equ	NRWW_STOP_ADDR	= 0xfff
+.equ	NRWW_START_ADDR	= 0x0
+.equ	NRWW_STOP_ADDR	= 0x7ff
 .equ	RWW_START_ADDR	= 0x0
-.equ	RWW_STOP_ADDR	= 0xbff
+.equ	RWW_STOP_ADDR	= 0x0
 .equ	PAGESIZE	= 32
-.equ	FIRSTBOOTSTART	= 0xf80
-.equ	SECONDBOOTSTART	= 0xf00
-.equ	THIRDBOOTSTART	= 0xe00
-.equ	FOURTHBOOTSTART	= 0xc00
-.equ	SMALLBOOTSTART	= FIRSTBOOTSTART
-.equ	LARGEBOOTSTART	= FOURTHBOOTSTART
-
+.equ    FIRSTBOOTSTART  = 0xf80
+.equ    SECONDBOOTSTART = 0xf00
+.equ    THIRDBOOTSTART  = 0xe00
+.equ    FOURTHBOOTSTART = 0xc00
+.equ    SMALLBOOTSTART  = FIRSTBOOTSTART
+.equ    LARGEBOOTSTART  = FOURTHBOOTSTART
 
 
 ; ***** INTERRUPT VECTORS ************************************************
@@ -953,6 +948,6 @@
 
 .equ	INT_VECTORS_SIZE	= 26	; size in words
 
-#endif  /* _M88DEF_INC_ */
+#endif  /* _M48DEF_INC_ */
 
 ; ***** END OF FILE ******************************************************
